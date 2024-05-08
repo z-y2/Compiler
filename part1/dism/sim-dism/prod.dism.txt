@@ -1,0 +1,21 @@
+
+
+#LOOP:	rdn 1         ;read n into register 1
+        rdn 2         ;read m into register 2
+        beq 1 0 #PRINT    
+        lod 3 1 0
+        beq 3 0 #INIT
+        mul 3 3 2
+        str 1 0 3
+        jmp 0 #LOOP
+
+#INIT:  str 1 0 2
+        jmp 0 #LOOP
+
+#PRINT: lod 3 2 0
+        ptn 3
+        rdn 2
+        blt 0 2 #PRINT
+        jmp 0 #LOOP
+
+

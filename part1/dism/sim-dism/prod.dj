@@ -1,0 +1,17 @@
+
+class Calculate extends Object {
+
+    nat product(nat n, nat input){
+
+        nat toReturn;
+
+        toReturn = n * input;
+
+        toReturn;
+    }
+}
+
+main {
+
+    // tbd? 
+}
