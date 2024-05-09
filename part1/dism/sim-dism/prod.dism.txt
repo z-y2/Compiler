@@ -1,21 +1,22 @@
 
 
-#LOOP:	rdn 1         ;read n into register 1
-        rdn 2         ;read m into register 2
-        beq 1 0 #PRINT    
-        lod 3 1 0
-        beq 3 0 #INIT
-        mul 3 3 2
-        str 1 0 3
-        jmp 0 #LOOP
+#LOOP:	rdn 1                   ;read val1 into register 1
+        rdn 2                   ;read val2 into register 2
+        beq 1 0 #PRINT          ;check if selection for print, jump
+        lod 3 1 0               ;not print, load curr val for key
+        beq 3 0 #INIT           ;if 0, jump to initialize num
+        mul 3 3 2               ;multiply curr val with new input
+        str 1 0 3               ;store back
+        jmp 0 #LOOP             ;loop back
 
-#INIT:  str 1 0 2
-        jmp 0 #LOOP
+#INIT:  str 1 0 2               ;initialize val, direct store
+        jmp 0 #LOOP             ;loop back
 
-#PRINT: lod 3 2 0
-        ptn 3
-        rdn 2
-        blt 0 2 #PRINT
-        jmp 0 #LOOP
+#PRINT: beq 2 0 #LOOP           ;check 0 term no val requested, loop back
+        lod 3 2 0               ;load requested val
+        ptn 3                   ;print val
+        rdn 2                   ;read new val
+        blt 0 2 #PRINT          ;print if requested new val
+        jmp 0 #LOOP             ;loop back for terminated val request
 
 
